@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 function GoogleButton() {
   return (
-    <Button type="button">
+    <Link href="/auth/google">
       <SpanIcon>
         <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -35,24 +35,29 @@ function GoogleButton() {
         </svg>
       </SpanIcon>
       <SpanText>Sign in with Google</SpanText>
-    </Button>
+    </Link>
   );
 }
 
-const Button = styled.button`
+const Link = styled.a`
   height: 4rem;
   border-width: 0;
   background: white;
   color: #737373;
-  border-radius: 0.5rempx;
+  border-radius: 0.5rem;
   white-space: nowrap;
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
   transition-property: background-color, box-shadow;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
-  padding: 0;
-  vertical-align: middle;
   margin-right: 2rem;
+  display: inline-block;
+  min-width: 19.7rem;
+  padding-top: 0.3rem;
+  svg {
+    display: inline-block;
+    margin-bottom: 1.4rem;
+  }
   cursor: pointer;
   :focus,
   :hover {
@@ -77,8 +82,7 @@ const SpanIcon = styled.span`
 
 const SpanText = styled.span`
   display: inline-block;
-  vertical-align: middle;
-  padding: 0 24px;
+  padding: 0 2.4rem;
   font-size: 14px;
   font-weight: bold;
   font-family: 'Roboto', arial, sans-serif;

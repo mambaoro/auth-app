@@ -9,33 +9,13 @@ import busyPeople from '../../videos/Busy-People.mp4';
 import Presentation from '../../components/Presentation';
 import SignUser from '../../components/SignUser';
 
-/* eslint-disable react/prefer-stateless-function */
-function Homepage() {
-  return (
-    <Container>
-      <DivVideoWrapper>
-        <DivBGPrimary>
-          <SignUser />
-        </DivBGPrimary>
-        <DivBGSecondary>
-          <Presentation />
-        </DivBGSecondary>
-        <video autoPlay loop muted>
-          <source src={busyPeople} />
-        </video>
-      </DivVideoWrapper>
-    </Container>
-  );
-}
+const Container = styled.div``;
 
 const cssSharedBG = css`
   position: fixed;
   min-width: 100vw;
   min-height: 100vh;
 `;
-
-const Container = styled.div``;
-
 const DivVideoWrapper = styled.div`
   position: fixed;
   min-width: 100vw;
@@ -54,5 +34,21 @@ const DivBGSecondary = styled.div`
   -webkit-clip-path: polygon(0 0, 100% 0, 0 100%, 0% 100%);
   clip-path: polygon(0 0, 100% 0, 0 100%, 0% 100%);
 `;
+
+function Homepage() {
+  return (
+    <Container>
+      <DivVideoWrapper>
+        <DivBGPrimary />
+        <DivBGSecondary />
+        <SignUser />
+        <Presentation />
+        <video autoPlay loop muted>
+          <source src={busyPeople} />
+        </video>
+      </DivVideoWrapper>
+    </Container>
+  );
+}
 
 export default Homepage;

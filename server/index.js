@@ -1,7 +1,13 @@
 /* eslint consistent-return:0 import/order:0 */
 
+require('dotenv').config();
+
 const express = require('express');
 const logger = require('./logger');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const authRoutes = require('./config/routes/auth-routes');
+require('./config/passport-setup');
 
 const argv = require('./argv');
 const port = require('./port');
@@ -12,10 +18,24 @@ const ngrok =
     ? require('ngrok')
     : false;
 const { resolve } = require('path');
-const cors = require('cors');
 const app = express();
 
-app.use(cors());
+app.use(
+  cookieSession({
+    maxAge: 6.048e8,
+    keys: [process.env.SESSION_KEY_1, process.env.SESSION_KEY_2],
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/auth', authRoutes);
+
+app.get('/getUser', (req, res) => {
+  if (!req.user) {
+    return res.status(400).send({ errorMessage: 'Not authenticated' });
+  }
+  res.send(req.user);
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
