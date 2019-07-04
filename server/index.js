@@ -21,6 +21,7 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+app.enable('trust proxy');
 app.use((req, res, next) => {
   if (req.secure) {
     next();
