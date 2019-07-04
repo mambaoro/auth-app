@@ -18,7 +18,6 @@ const ngrok =
     ? require('ngrok')
     : false;
 const { resolve } = require('path');
-const https = require('https');
 const app = express();
 
 app.enable('trust proxy');
@@ -57,10 +56,8 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
-const server = https.createServer(app);
-
 // Start your app.
-server.listen(port, host, async err => {
+app.listen(port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
