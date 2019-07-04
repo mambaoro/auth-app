@@ -20,7 +20,7 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-app.enable('trust proxy');
+app.set('trust proxy', 1);
 app.use(
   cookieSession({
     maxAge: 6.048e8,
