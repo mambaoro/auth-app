@@ -18,9 +18,10 @@ const ngrok =
     ? require('ngrok')
     : false;
 const { resolve } = require('path');
+const https = require('https');
 const app = express();
 
-app.set('trust proxy', 1);
+app.enable('trust proxy');
 app.use(
   cookieSession({
     maxAge: 6.048e8,
@@ -56,8 +57,10 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
+const server = https.createServer(app);
+
 // Start your app.
-app.listen(port, host, async err => {
+server.listen(port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
