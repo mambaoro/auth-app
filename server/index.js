@@ -6,7 +6,8 @@ const express = require('express');
 const cors = require('cors');
 const logger = require('./logger');
 const passport = require('passport');
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
+const session = require('express-session');
 const authRoutes = require('./config/routes/auth-routes');
 require('./config/passport-setup');
 
@@ -23,19 +24,16 @@ const app = express();
 
 app.set('trust proxy', 1);
 app.use(cors());
-// app.use((req, res, next) => {
-//   if (req.secure) {
-//     next();
-//   } else {
-//     res.redirect(`https://${req.headers.host}${req.url}`);
-//   }
-// });
 app.use(
-  cookieSession({
-    maxAge: 6.048e8,
-    keys: [process.env.SESSION_KEY_1, process.env.SESSION_KEY_2],
-    secure: false,
-    secureProxy: false,
+  session({
+    secret: process.env.SESSION_KEY_1,
+    proxy: true,
+    saveUninitialized: false,
+    resave: false,
+    maxAge: null,
+    cookie: {
+      secure: process.env.NODE_ENV === 'production',
+    },
   }),
 );
 app.use(passport.initialize());
