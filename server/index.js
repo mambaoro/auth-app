@@ -21,7 +21,7 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-app.enable('trust proxy');
+app.set('trust proxy', 1);
 app.use(cors());
 // app.use((req, res, next) => {
 //   if (req.secure) {
@@ -34,6 +34,8 @@ app.use(
   cookieSession({
     maxAge: 6.048e8,
     keys: [process.env.SESSION_KEY_1, process.env.SESSION_KEY_2],
+    secure: false,
+    secureProxy: false,
   }),
 );
 app.use(passport.initialize());
