@@ -16,11 +16,7 @@ function SignUser() {
   const [user, setUserData] = useState(null);
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get(
-        process.env.NODE_ENV === 'production'
-          ? 'https://authapp.mambaoro.com/getUser'
-          : '/getUser',
-      );
+      const res = await axios.get('/getUser');
       // eslint-disable-next-line no-unused-expressions
       res.data && setUserData(res.data);
       // eslint-disable-next-line no-unused-expressions

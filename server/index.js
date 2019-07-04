@@ -21,7 +21,13 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-app.enable('trust proxy');
+app.use((req, res, next) => {
+  if (req.secure) {
+    next();
+  } else {
+    res.redirect(`https://${req.headers.host}${req.url}`);
+  }
+});
 app.use(cors());
 app.use(
   cookieSession({
