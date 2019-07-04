@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const logger = require('./logger');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
@@ -21,6 +22,7 @@ const { resolve } = require('path');
 const app = express();
 
 app.enable('trust proxy');
+app.use(cors());
 app.use(
   cookieSession({
     maxAge: 6.048e8,
