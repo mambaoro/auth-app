@@ -17,9 +17,9 @@ function SignUser() {
   useEffect(() => {
     const getUser = async () => {
       const res = await axios.get(
-        process.env.NODE_ENV === 'production'
-          ? 'https://authapp.mambaoro.com/getUser'
-          : '/getUser',
+        process.env.NODE_ENV !== 'production'
+          ? '/getUser'
+          : 'https://authapp.mambaoro.com/getUser',
       );
       // eslint-disable-next-line no-unused-expressions
       res.data && setUserData(res.data);
