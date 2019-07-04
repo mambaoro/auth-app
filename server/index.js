@@ -30,10 +30,9 @@ app.use(
     proxy: true,
     saveUninitialized: false,
     resave: false,
-    maxAge: null,
+    maxAge: 6.048e8,
     cookie: {
       secure: false,
-      maxAge: 5184000000,
     },
   }),
 );
