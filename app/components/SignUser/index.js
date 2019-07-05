@@ -18,7 +18,7 @@ function SignUser() {
     const getUser = async () => {
       const res = await axios.get('/getUser');
       // eslint-disable-next-line no-unused-expressions
-      res.data.id && setUserData(res.data);
+      res.data.username && setUserData(res.data);
       console.log(res);
     };
     getUser();
