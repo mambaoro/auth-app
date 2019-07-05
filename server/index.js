@@ -39,7 +39,7 @@ app.use('/auth', authRoutes);
 
 app.get('/getUser', (req, res) => {
   if (!req.user) {
-    return res.status(400).send({ errorMessage: 'Not authenticated' });
+    return res.send({ isAuthenticated: false });
   }
   res.send(req.user);
 });
