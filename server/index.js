@@ -66,8 +66,8 @@ app.get('*.js', (req, res, next) => {
 
 const server = https.createServer(
   {
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('./cert.pem'),
+    key: fs.readFileSync('./server/key.pem'),
+    cert: fs.readFileSync('./server/cert.pem'),
   },
   app,
 );
