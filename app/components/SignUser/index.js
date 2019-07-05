@@ -14,12 +14,14 @@ import LogoutBtn from '../LogoutBtn';
 
 function SignUser() {
   const [user, setUserData] = useState(null);
+  const [isAuthenticated, setIsAuth] = useState(false);
   useEffect(() => {
     const getUser = async () => {
       const res = await axios.get('/getUser');
       // eslint-disable-next-line no-unused-expressions
-      res.data.username && setUserData(res.data);
-      console.log(res);
+      res.data.user && setUserData(res.data.user);
+      // eslint-disable-next-line no-unused-expressions
+      res.data.isAuthenticated && setIsAuth(true);
     };
     getUser();
   }, []);
@@ -34,8 +36,8 @@ function SignUser() {
           </section>
         </div>
       )}
-      {!user && <p>You are not logged in</p>}
-      {user && (
+      {!isAuthenticated && <p>You are not logged in</p>}
+      {isAuthenticated && (
         <ArticleUserDetails>
           <h2>Hi, {user && user.username}! You are logged in</h2>
           <div>
@@ -49,7 +51,7 @@ function SignUser() {
           </div>
         </ArticleUserDetails>
       )}
-      {user && (
+      {isAuthenticated && (
         <div>
           <LogoutBtn>Log out</LogoutBtn>
         </div>

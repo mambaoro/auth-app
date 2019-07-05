@@ -41,7 +41,7 @@ app.get('/getUser', (req, res) => {
   if (!req.user) {
     return res.send({ isAuthenticated: false });
   }
-  res.send(req.user);
+  res.send({ user: req.user, isAuthenticated: true });
 });
 
 // In production we need to pass these values in instead of relying on webpack
