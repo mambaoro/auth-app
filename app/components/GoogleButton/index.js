@@ -7,10 +7,15 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import axios from 'axios';
 
 function GoogleButton() {
+  const handleClick = async e => {
+    e.preventDefault();
+    axios.get('/auth/google');
+  };
   return (
-    <Link href="/auth/google">
+    <Button type="button" onClick={handleClick}>
       <SpanIcon>
         <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -35,11 +40,11 @@ function GoogleButton() {
         </svg>
       </SpanIcon>
       <SpanText>Sign in with Google</SpanText>
-    </Link>
+    </Button>
   );
 }
 
-const Link = styled.a`
+const Button = styled.button`
   height: 4rem;
   border-width: 0;
   background: white;
