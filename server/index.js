@@ -31,9 +31,6 @@ app.use(
     saveUninitialized: false,
     resave: false,
     maxAge: 6.048e8,
-    cookie: {
-      secure: false,
-    },
   }),
 );
 app.use(passport.initialize());
