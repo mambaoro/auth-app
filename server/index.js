@@ -3,6 +3,8 @@
 require('dotenv').config();
 
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 const cors = require('cors');
 const logger = require('./logger');
 const passport = require('passport');
@@ -62,8 +64,16 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
+const server = https.createServer(
+  {
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+  },
+  app,
+);
+
 // Start your app.
-app.listen(port, host, async err => {
+server.listen(port, host, async err => {
   if (err) {
     return logger.error(err.message);
   }
