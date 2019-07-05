@@ -19,6 +19,7 @@ function SignUser() {
       const res = await axios.get('/getUser');
       // eslint-disable-next-line no-unused-expressions
       res.data.id && setUserData(res.data);
+      console.log(res);
     };
     getUser();
   }, []);
