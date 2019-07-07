@@ -27,19 +27,15 @@ passport.use(
       proxy: true,
     },
     async (accesToken, refreshToken, profile, done) => {
-      try {
-        await User.sync();
-        const newUser = await User.findOrCreate({
-          where: {
-            googleId: profile.id,
-            username: profile.displayName,
-            profileImageUrl: profile.photos[0].value,
-          },
-        });
-        done(null, newUser[0]);
-      } catch (e) {
-        done(e);
-      }
+      await User.sync();
+      const newUser = await User.findOrCreate({
+        where: {
+          googleId: profile.id,
+          username: profile.displayName,
+          profileImageUrl: profile.photos[0].value,
+        },
+      });
+      done(null, newUser[0]);
     },
   ),
 );
@@ -53,19 +49,15 @@ passport.use(
       proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
-      try {
-        await User.sync();
-        const newUser = await User.findOrCreate({
-          where: {
-            githubId: profile.id,
-            username: profile.username,
-            profileImageUrl: profile.photos[0].value,
-          },
-        });
-        done(null, newUser[0]);
-      } catch (e) {
-        done(e);
-      }
+      await User.sync();
+      const newUser = await User.findOrCreate({
+        where: {
+          githubId: profile.id,
+          username: profile.username,
+          profileImageUrl: profile.photos[0].value,
+        },
+      });
+      done(null, newUser[0]);
     },
   ),
 );
