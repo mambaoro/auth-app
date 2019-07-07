@@ -9,7 +9,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 function GithubButton() {
-  return <Link href="auth/github">Sign in with GitHub</Link>;
+  return (
+    <Link
+      href={
+        (process.env === 'production' &&
+          'https://authapp.mambaoro.com/auth/github') ||
+        '/auth/github'
+      }
+    >
+      Sign in with GitHub
+    </Link>
+  );
 }
 
 const Link = styled.a`

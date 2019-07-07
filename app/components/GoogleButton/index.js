@@ -10,7 +10,13 @@ import styled from 'styled-components';
 
 function GoogleButton() {
   return (
-    <Link href="/auth/google">
+    <Link
+      href={
+        (process.env === 'production' &&
+          'https://authapp.mambaoro.com/auth/google') ||
+        '/auth/google'
+      }
+    >
       <SpanIcon>
         <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
           <path
