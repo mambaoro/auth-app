@@ -24,8 +24,11 @@ const { resolve } = require('path');
 const app = express();
 
 app.set('trust proxy', 1);
-app.disable('view cache');
 app.use(cors());
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+});
 
 const options = {
   host: process.env.DATABASE_HOST,
