@@ -38,6 +38,8 @@ router.get(
 // logout
 router.get('/logout', (req, res) => {
   req.logout();
+  req.session.destroy();
+  res.clearCookie('authapp');
   res.redirect('/');
 });
 
