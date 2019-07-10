@@ -1,11 +1,11 @@
 /* eslint consistent-return:0 import/order:0 */
 
 require('dotenv').config();
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const express = require('express');
 const cors = require('cors');
 const logger = require('./logger');
+const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
 // const cookieSession = require('cookie-session');
 const session = require('express-session');
@@ -25,13 +25,24 @@ const app = express();
 
 app.set('trust proxy', 1);
 app.use(cors());
+
+const options = {
+  host: process.env.DATABASE_HOST,
+  port: 3306,
+  user: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE,
+  expiration: 6.048e8,
+};
+
+const sessionStore = new MySQLStore(options);
 app.use(
   session({
+    key: 'authapp',
     secret: process.env.SESSION_KEY_1,
-    proxy: true,
+    store: sessionStore,
     saveUninitialized: false,
     resave: false,
-    maxAge: 6.048e8,
   }),
 );
 app.use(passport.initialize());

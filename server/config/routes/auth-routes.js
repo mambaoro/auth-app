@@ -6,7 +6,7 @@ const passport = require('passport');
 router.get(
   '/google',
   passport.authenticate('google', {
-    scope: ['https://www.googleapis.com/auth/plus.login', 'profile'],
+    scope: ['profile'],
   }),
 );
 
