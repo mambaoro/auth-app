@@ -5,10 +5,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const logger = require('./logger');
-const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
 // const cookieSession = require('cookie-session');
 const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 const authRoutes = require('./config/routes/auth-routes');
 require('./config/passport-setup');
 
@@ -35,7 +35,7 @@ const options = {
   expiration: 6.048e8,
 };
 
-const sessionStore = new MySQLStore(options)(session);
+const sessionStore = new MySQLStore(options);
 app.use(
   session({
     key: 'authapp',
