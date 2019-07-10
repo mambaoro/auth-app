@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const nocache = require('nocache');
 const logger = require('./logger');
 const passport = require('passport');
 // const cookieSession = require('cookie-session');
@@ -25,10 +26,7 @@ const app = express();
 
 app.set('trust proxy', 1);
 app.use(cors());
-app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  next();
-});
+app.use(nocache());
 
 const options = {
   host: process.env.DATABASE_HOST,
