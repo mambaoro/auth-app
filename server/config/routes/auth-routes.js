@@ -16,9 +16,7 @@ router.get(
   passport.authenticate('google', {
     failureRedirect: '/',
   }),
-  (req, res) => {
-    res.redirect('/');
-  },
+  (req, res) => res.redirect('/'),
 );
 
 // auth with github
@@ -30,9 +28,7 @@ router.get(
   passport.authenticate('github', {
     failureRedirect: '/',
   }),
-  (req, res) => {
-    res.redirect('/');
-  },
+  (req, res) => res.redirect('/'),
 );
 
 // logout
