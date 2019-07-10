@@ -15,6 +15,7 @@ router.get(
   '/google/redirect',
   passport.authenticate('google', {
     failureRedirect: '/',
+    successRedirect: '/',
   }),
   (req, res) => res.redirect('/'),
 );
@@ -27,6 +28,7 @@ router.get(
   '/github/redirect',
   passport.authenticate('github', {
     failureRedirect: '/',
+    successRedirect: '/',
   }),
   (req, res) => res.redirect('/'),
 );
