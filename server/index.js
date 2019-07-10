@@ -26,13 +26,6 @@ const app = express();
 app.set('trust proxy', 1);
 app.use(cors());
 
-app.use((req, res, next) => {
-  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-  res.header('Expires', '-1');
-  res.header('Pragma', 'no-cache');
-  next();
-});
-
 const options = {
   host: process.env.DATABASE_HOST,
   port: 3306,
