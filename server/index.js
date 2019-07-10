@@ -35,7 +35,7 @@ const options = {
   expiration: 6.048e8,
 };
 
-const sessionStore = new MySQLStore(options);
+const sessionStore = new MySQLStore(options)(session);
 app.use(
   session({
     key: 'authapp',
