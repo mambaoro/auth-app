@@ -24,6 +24,7 @@ const { resolve } = require('path');
 const app = express();
 
 app.set('trust proxy', 1);
+app.disable('view cache');
 app.use(cors());
 
 const options = {
