@@ -26,14 +26,12 @@ const app = express();
 app.set('trust proxy', 1);
 app.use(cors());
 
-const nocache = (req, res, next) => {
+app.use((req, res, next) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   res.header('Expires', '-1');
   res.header('Pragma', 'no-cache');
   next();
-};
-
-app.use(nocache());
+});
 
 const options = {
   host: process.env.DATABASE_HOST,
