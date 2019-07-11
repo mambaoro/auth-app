@@ -17,7 +17,6 @@ router.get(
     failureRedirect: '/',
     successRedirect: '/',
   }),
-  (req, res) => res.redirect('/'),
 );
 
 // auth with github
@@ -30,7 +29,6 @@ router.get(
     failureRedirect: '/',
     successRedirect: '/',
   }),
-  (req, res) => res.redirect('/'),
 );
 
 // logout
