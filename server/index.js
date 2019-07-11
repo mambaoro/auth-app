@@ -51,9 +51,10 @@ app.use('/auth', authRoutes);
 
 app.get('/getUser', (req, res) => {
   if (!req.user) {
-    return res.send({ isAuthenticated: false });
+    res.send({ isAuthenticated: false });
+  } else {
+    res.send({ user: req.user, isAuthenticated: true });
   }
-  res.send({ user: req.user, isAuthenticated: true });
 });
 
 // In production we need to pass these values in instead of relying on webpack
