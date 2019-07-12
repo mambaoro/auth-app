@@ -121,11 +121,11 @@ module.exports = require('./webpack.base.babel')({
     }),
 
     new WebpackPwaManifest({
-      name: 'React Boilerplate',
-      short_name: 'React BP',
-      description: 'My React Boilerplate-based project!',
+      name: 'Auth app',
+      short_name: 'Auth app',
+      description: 'Authentication with OAuth',
       background_color: '#fafafa',
-      theme_color: '#b1624d',
+      theme_color: '#474776',
       inject: true,
       ios: true,
       icons: [

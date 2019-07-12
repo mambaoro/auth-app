@@ -5,7 +5,6 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const logger = require('./logger');
-const csp = require('helmet-csp');
 const passport = require('passport');
 // const cookieSession = require('cookie-session');
 const session = require('express-session');
@@ -26,13 +25,6 @@ const app = express();
 
 app.set('trust proxy', 1);
 app.use(cors());
-app.use(
-  csp({
-    directives: {
-      defaultSrc: [`*`],
-    },
-  }),
-);
 
 const options = {
   host: process.env.DATABASE_HOST,
