@@ -29,7 +29,7 @@ app.use(cors());
 app.use(
   csp({
     directives: {
-      defaultSrc: [`'none'`],
+      defaultSrc: [`'*'`],
     },
   }),
 );
