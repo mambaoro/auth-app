@@ -35,15 +35,18 @@ router.get(
   (req, res) => {
     // Successful authentication, redirect home.
     res.redirect('/');
-  }
+  },
 );
 
 // logout
 router.get('/logout', (req, res) => {
   req.logout();
-  req.session.destroy();
   res.clearCookie('authapp');
-  res.redirect('/');
+  req.session.destroy(err => {
+    if (!err) {
+      res.redirect('/');
+    }
+  });
 });
 
 module.exports = router;
